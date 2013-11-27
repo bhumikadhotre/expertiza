@@ -24,10 +24,10 @@ class Questionnaire < ActiveRecord::Base
 
 	def compute_weighted_score(symbol, assignment, scores)
     aq = self.assignment_questionnaires.find_by_assignment_id(assignment.id)
-    if scores[symbol][:scores].avg
+    if scores[symbol][:scores].[:avg]
       #dont bracket and to_f the whole thing - you get a 0 in the result.. what you do is just to_f the 100 part .. to get the fractions
 
-      return scores[symbol][:scores].avg * aq.questionnaire_weight  / 100.to_f
+      return scores[symbol][:scores].[:avg] * aq.questionnaire_weight  / 100.to_f
     else
       return 0
     end
